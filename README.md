@@ -1,27 +1,42 @@
-## Git Training
+---
+description: API Documentation about project Ask
+---
 
-##### Don't think about git, just do git !
-##### (Based on a scenario; c programming with Git (Report card, Knapsack problem))
-### Training Environment
+# 사용 안내서
 
-1. Download tutorial
-    - [tutorial v3](https://www.dropbox.com/s/jwpkfn5c8d1z74y/Git-training-v3.pdf?dl=1&pv=1)
-    - [tutorial v2](https://www.dropbox.com/s/6o5sfs1iyd9cxdq/Git-training-v2.pdf?dl=1&pv=1) & [example code v2](https://www.dropbox.com/sh/3ywkargf9xzcfoi/AAC63uvN4eQBQhT_1m4GmCMLa?dl=1&pv=1)
-    - [tutorial v1](https://www.dropbox.com/s/0bplreunw6vf69p/Git-training.pdf?dl=1&pv=1) & [example code v1](https://www.dropbox.com/sh/9q2emkhxmyckoj6/AAA_H55BVhfRvGHOs9j7l9N2a?dl=1&pv=1)
-2. Install Git ([git](https://git-scm.com/downloads), [source tree](https://www.sourcetreeapp.com))
-3. Editor ([atom](https://atom.io/), [sublime text](https://www.sublimetext.com/3))
-4. Github account ([sign up](https://github.com/join))
-5. Download [the courage](https://www.dropbox.com/s/36ifeasvhhshqj8/you_can_do_git?dl=1&pv=1)
+## API에 연동하는 
 
-### Stage
-1. New version (v2)
-    - Basic : Stage 1 ~ 7
-    - Advanced : Stage 8 ~ 11
+우선 개발서버를 활성화시켜야 한다. 이를 위해서 우선 서버를 작동시켜야한다.  
 
-2. Old version (v1)
-    - Basic : Stage 1 ~ 10
-    - Advanced : Stage 11 ~ 14
+```
+$ cd backend/
+$ npm install
+$ npm start
+```
 
-### The results (v1)
-![screenshot](img/results_20160327.png)
-[git-training.docs.google](https://docs.google.com/spreadsheets/d/1uPMCOKISMgj_svsoxG1LF1RbozA9RMKfx7h9vT80Atc/edit#gid=0)
+{% hint style="info" %}
+작동 전 backend 폴더 내에 .env 파일을 만들어 다음과 같이 설정해 놓는다.
+{% endhint %}
+
+{% code title=".env" %}
+```bash
+PORT=4000
+MONGO_URI=mongodb+srv://sample:sample123@cluster0.khztw.gcp.mongodb.net/blog?retryWrites=true&w=majority
+JWT_SECRET=02750204a32b72079ee621b8bfdadf0b1ada419ee8a58ee93ca138629e0a5b6735d169a01402752ff0066de7507da840daca07d293f34bca8037ee1e92086892
+```
+{% endcode %}
+
+서버를 돌아가게 만든 후에는 react의 경우 package.json의 "proxy"를 통해 api에 접근할 수 있다.  
+
+{% code title="package.json" %}
+```bash
+"proxy": "http://localhost:4000"
+```
+{% endcode %}
+
+proxy가 설정되면 \(axios  등을 이용하\) api를 가져올수 있다.
+
+```bash
+ex) /register => http://localhost:4000/register
+```
+
